@@ -9,14 +9,12 @@ import {
   FormLabel,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { firebaseConfig } from "../firebase/firebaseCongi";
+import { iniApp } from "../firebase/firebaseCongi";
 import { useEffect, useState } from "react";
 import { useUser } from "../provider/UseProvider";
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
+const auth = getAuth(iniApp);
 
 export const LogIn = () => {
   const [errorMessage, setErrorMessage] = useState("");

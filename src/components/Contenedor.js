@@ -1,11 +1,13 @@
 import { SimpleGrid, Box } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/button";
 import { Store } from "./Store";
 import { db } from "../firebase/firebaseCongi";
 import { useState, useEffect } from "react";
-import { collection, getDocs, doc, getDoc } from "@firebase/firestore";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 
 export const Contenedor = () => {
+  //Crear referencia de la db tiendas
+  // const tiendasRef = collection(db, "tiendas");
+
   const [locales, setLocales] = useState([]);
   const documentos = [];
   const leerTiendas = async () => {
@@ -14,7 +16,7 @@ export const Contenedor = () => {
       query.forEach((doc) => {
         documentos.push({ id: doc.id, ...doc.data() });
       });
-      console.log(documentos);
+      console.log("documento completo", documentos);
       setLocales(documentos);
     } catch (err) {
       console.log(err);
@@ -24,21 +26,22 @@ export const Contenedor = () => {
   const reserva = [];
   const obtenerTienda = async () => {
     try {
-      const docRef = doc(db, "tiendas", "OlBj5UhFGNex82r1vwc6");
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        reserva.push(docSnap.data());
-        console.log(reserva);
+      const q = query(
+        collection(db, "tiendas"),
+        where("nombre", "==", "Italy")
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        reserva.push(doc.data());
         setRes(reserva);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+        console.log("impreeeee", doc.data());
+      });
     } catch (err) {
       console.log(err);
     }
   };
+  console.log("coleccion de: ", res[0]);
 
   /* recuperar un documento*/
 
@@ -63,10 +66,10 @@ export const Contenedor = () => {
           return <Store key={local.id} local={local} />;
         })}
       </SimpleGrid>
-      {/*       <Box>Pizzeria </Box>
+      <Box>Pizzeria </Box>
       {res.map((local) => {
-        return <Store key={local.id} local={local} />;
-      })} */}
+        return <Store local={local} />;
+      })}
     </>
   );
 };

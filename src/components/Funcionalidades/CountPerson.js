@@ -5,6 +5,8 @@ import { useState } from "react";
 
 export const CountPerson = () => {
   const [count, setCount] = useState(1);
+
+  //  const datos = { countPerson: count };
   return (
     <Menu>
       <MenuButton

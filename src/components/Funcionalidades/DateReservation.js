@@ -20,9 +20,9 @@ export const DateReservation = () => {
   let threeDay = event.getUTCDate();
 
   let oneDay = `${day}/${month}/${year}`;
-  let twoDays = `${nextDay}/${month + 1}/${year}`;
-  let threeDays = `${twoDay}/${month + 1}/${year}`;
-  let fourDays = `${threeDay}/${month + 1}/${year}`;
+  let twoDays = `${nextDay}/${month}/${year}`;
+  let threeDays = `${twoDay}/${month}/${year}`;
+  let fourDays = `${threeDay}/${month}/${year}`;
 
   const [date, setDate] = useState("Fecha");
 
