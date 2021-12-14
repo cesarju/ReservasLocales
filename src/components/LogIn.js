@@ -8,6 +8,7 @@ import {
   FormControl,
   FormLabel,
 } from "@chakra-ui/react";
+import { Image, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { iniApp } from "../firebase/firebaseCongi";
@@ -58,17 +59,31 @@ export const LogIn = () => {
           boxShadow="dark-lg"
           borderWidth="2px"
         >
-          <Flex direction="column" p={12}>
-            <Heading mb={6}>Log In</Heading>
-            {/* validar si un componente existe */}
+          <Flex direction="column" p={10}>
+            <VStack>
+              <Heading mb={1} fontFamily="roboto">
+                The Best Pizza
+              </Heading>
+              <Box paddingLeft="80px">
+                <Image
+                  src="https://i.imgur.com/iLESb73.png"
+                  alt="logoPizza"
+                  boxSize="120px"
+                  position="absolute"
+                />
+              </Box>
+            </VStack>
+            <Text fontSize="2xl" mb={6} mt={10}>
+              Log In
+            </Text>
 
             <FormControl id="email" mb={3}>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" id="email" />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" id="password" />
             </FormControl>
             <Link to="/storeReserve">
               <Button

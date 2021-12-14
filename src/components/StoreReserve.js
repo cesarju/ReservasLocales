@@ -7,7 +7,7 @@ export const StoreReserve = () => {
   return (
     <Box>
       <Header />
-      <Center bg="tomato" h="100px" color="white">
+      <Center bg="tomato" h="70px" color="white">
         <Heading>Reservas rapidas y confiables</Heading>
       </Center>
       <Contenedor />

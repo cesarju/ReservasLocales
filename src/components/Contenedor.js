@@ -24,6 +24,7 @@ export const Contenedor = () => {
   };
   const [res, setRes] = useState([]);
   const reserva = [];
+  let nombrePizzeria = "";
   const obtenerTienda = async () => {
     try {
       const q = query(
@@ -36,6 +37,8 @@ export const Contenedor = () => {
         reserva.push(doc.data());
         setRes(reserva);
         console.log("impreeeee", doc.data());
+        nombrePizzeria = reserva.nombre;
+        console.log(nombrePizzeria);
       });
     } catch (err) {
       console.log(err);
@@ -66,10 +69,10 @@ export const Contenedor = () => {
           return <Store key={local.id} local={local} />;
         })}
       </SimpleGrid>
-      <Box>Pizzeria </Box>
+      {/*       <Box>Pizzeria {nombrePizzeria}</Box>
       {res.map((local) => {
         return <Store local={local} />;
-      })}
+      })} */}
     </>
   );
 };

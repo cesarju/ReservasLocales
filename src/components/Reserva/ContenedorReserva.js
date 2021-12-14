@@ -7,9 +7,16 @@ export const ContenedorReserva = ({ tienda }) => {
   return (
     <>
       <Text fontSize="5xl" textAlign="center">
-        <strong>{nombre}</strong>
+        {nombre}
       </Text>
-      <Image src={logo} alt="tienda" />
+      <Image
+        src={logo}
+        alt="tienda"
+        h={300}
+        v={400}
+        borderRadius="lg"
+        marginRight={4}
+      />
       <Box>
         <Text>
           <strong>Direccion:</strong> {direccion}

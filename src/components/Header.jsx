@@ -1,4 +1,4 @@
-import { Box, Heading, Flex, Center } from "@chakra-ui/layout";
+import { Box, Heading, Flex } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { ProfileImage } from "./ProfileImage";
 import { useUser } from "../provider/UseProvider";
@@ -41,7 +41,7 @@ export const Header = () => {
         <Spacer />
         {/* foto de perfin y sing up */}
         <Flex direction="row" mt={20}>
-          <Link to="#" onClick={handleSingUp}>
+          <Link to="/" onClick={handleSingUp}>
             <Button colorScheme="red" mt={3} color="white" mr="4">
               Sing Up
             </Button>

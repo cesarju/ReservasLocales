@@ -7,11 +7,12 @@ export const ProtectedRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) => {
-        return user.name ? (
-          children
-        ) : (
-          <Redirect to={{ pathname: "/", state: location }} />
-        );
+        return user.name
+          ? children
+          : setTimeout(
+              <Redirect to={{ pathname: "/", state: location }} />,
+              5000
+            );
       }}
     />
   );

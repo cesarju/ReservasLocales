@@ -1,8 +1,5 @@
-import { Box, Text } from "@chakra-ui/layout";
-import { Center } from "@chakra-ui/layout";
+import { Box, Center, Heading, Grid } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
-import { Heading } from "@chakra-ui/layout";
-import { useState, useEffect } from "react";
 import { query, collection, where, getDocs } from "@firebase/firestore";
 import { db } from "../../firebase/firebaseCongi";
 import { ContenedorReserva } from "../Reserva/ContenedorReserva";
@@ -15,17 +12,21 @@ import {
   Tbody,
   Td,
 } from "@chakra-ui/table";
-import { Grid } from "@chakra-ui/layout";
 import { Header } from "../Header";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useToast } from "@chakra-ui/react";
 
 export const DatosReserva = () => {
+  const toast = useToast();
+  const pizzeria = "Mr. Pizza";
   const [res, setRes] = useState([]);
   const reserva = [];
   const obtenerTienda1 = async () => {
     try {
       const q = await query(
         collection(db, "tiendas"),
-        where("nombre", "==", "Italy")
+        where("nombre", "==", pizzeria)
       );
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
@@ -52,29 +53,50 @@ export const DatosReserva = () => {
       </Center>
       <Center>
         <Grid
-          h="200px"
+          h="650px"
           templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(2, 1fr)"
-          gap={1}
+          templateColumns="repeat(2, 3fr)"
+          gap={5}
           m={4}
           p={4}
           borderWidth="1px"
           borderRadius="lg"
+          boxShadow="xl"
         >
-          <Heading textAlign="center" fontSize="2xl" mt={2}>
-            Confirma tu reservaen el restaurante
+          <Heading textAlign="center" fontSize="3xl" bg="#f3f6f9" pt={5}>
+            Pizzeria
           </Heading>
-          <Heading textAlign="center" fontSize="2xl" mt={2}>
-            Tenemos los siguites platos que puedes disfrutar
+          <Heading textAlign="center" fontSize="3xl" bg="#f3f6f9" pt={5}>
+            Menú
           </Heading>
           <Box>
-            <Box>
+            <Box pl={2}>
               {res.map((e) => {
                 return <ContenedorReserva tienda={e} />;
               })}
-              <Button colorScheme="red">Confirmar</Button>
+              <Button
+                colorScheme="red"
+                onClick={() =>
+                  toast({
+                    marginLeft: "12px",
+                    render: () => (
+                      <Box color="white" p={3} bg="tomato" fontSize="xl">
+                        Reserva exitosa, lo esperamos :)
+                      </Box>
+                    ),
+                  })
+                }
+              >
+                Confirmar
+              </Button>
+              <Link to="/storeReserve">
+                <Button colorScheme="red" variant="outline" marginLeft={4}>
+                  Cancelar
+                </Button>
+              </Link>
             </Box>
           </Box>
+
           <Box>
             <Table variant="simple" mt="2">
               <TableCaption>
