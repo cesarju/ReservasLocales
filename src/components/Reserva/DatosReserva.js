@@ -18,6 +18,8 @@ import { useState, useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
 
 export const DatosReserva = () => {
+  //alert("Aqui vendra el nombre " + nombreLocal);
+
   const toast = useToast();
   const pizzeria = "Mr. Pizza";
   const [res, setRes] = useState([]);
@@ -28,18 +30,20 @@ export const DatosReserva = () => {
         collection(db, "tiendas"),
         where("nombre", "==", pizzeria)
       );
+
       const querySnapshot = await getDocs(q);
+      console.log(querySnapshot);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         reserva.push(doc.data());
         setRes(reserva);
-        console.log("impreeeee", doc.data());
+        //console.table("impreeeee tabla", doc.data());
       });
     } catch (err) {
       console.log(err);
     }
   };
-  console.log("coleccion de: ", res[0]);
+  //console.table("coleccion de: ", res[0]);
 
   useEffect(() => {
     obtenerTienda1();
@@ -61,8 +65,7 @@ export const DatosReserva = () => {
           p={4}
           borderWidth="1px"
           borderRadius="lg"
-          boxShadow="xl"
-        >
+          boxShadow="xl">
           <Heading textAlign="center" fontSize="3xl" bg="#f3f6f9" pt={5}>
             Pizzeria
           </Heading>
@@ -85,8 +88,7 @@ export const DatosReserva = () => {
                       </Box>
                     ),
                   })
-                }
-              >
+                }>
                 Confirmar
               </Button>
               <Link to="/storeReserve">

@@ -4,6 +4,7 @@ import { Contenedor } from "./Contenedor";
 import { Header } from "./Header";
 
 export const StoreReserve = () => {
+  console.log("Mostrando la inforacion");
   return (
     <Box>
       <Header />

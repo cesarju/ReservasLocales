@@ -6,6 +6,7 @@ import { DateReservation } from "./Funcionalidades/DateReservation";
 import { Link } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 import { Link as Li } from "@chakra-ui/react";
+import { DatosReserva } from "./Reserva/DatosReserva";
 
 //importtaciondes de consultas
 
@@ -13,13 +14,12 @@ export const Store = ({ local }) => {
   //Consulta de nombre
 
   //fin de la consulta
-
-  const handleName = () => {
-    prompt(nombre);
-  };
-
   const { nombre, direccion, sucursal, telefono, logo } = local;
-
+  //Consulta de nombre
+  /*   const handleNameStore = () => {
+    return nombre;
+  }; */
+  //fin de la consulta
   return (
     <HStack borderWidth="1.5px" borderRadius="lg" boxShadow="xl">
       <Image
@@ -39,8 +39,7 @@ export const Store = ({ local }) => {
           <Li
             color="red"
             href="https://goo.gl/maps/Tg5w8fWMefsagSFb8"
-            isExternal
-          >
+            isExternal>
             {" "}
             Visitar
           </Li>
@@ -56,12 +55,7 @@ export const Store = ({ local }) => {
         <CountPerson />
         <DateReservation />
         <Link to="/datosReserva">
-          <Button
-            colorScheme="red"
-            variant="outline"
-            marginLeft={4}
-            onClick={handleName}
-          >
+          <Button colorScheme="red" variant="outline" marginLeft={4}>
             Reservar
           </Button>
         </Link>

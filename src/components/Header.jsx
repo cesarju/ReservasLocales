@@ -30,8 +30,7 @@ export const Header = () => {
         backgroundImage="https://i.imgur.com/JEb82WN.jpg"
         h={350}
         w="100%"
-        mt={-16}
-      >
+        mt={-16}>
         <Box p="2" mt={16}>
           <Heading size="xl" color="white">
             Bienvenido

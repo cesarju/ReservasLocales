@@ -11,7 +11,7 @@ export const ProtectedRoute = ({ children, ...rest }) => {
           ? children
           : setTimeout(
               <Redirect to={{ pathname: "/", state: location }} />,
-              5000
+              2000
             );
       }}
     />

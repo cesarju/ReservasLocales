@@ -22,6 +22,8 @@ export const Contenedor = () => {
       console.log(err);
     }
   };
+
+  // implementacon de la reserva
   const [res, setRes] = useState([]);
   const reserva = [];
   let nombrePizzeria = "";
@@ -44,8 +46,8 @@ export const Contenedor = () => {
       console.log(err);
     }
   };
-  console.log("coleccion de: ", res[0]);
 
+  //////////////Fin de la implementacion///////////////
   /* recuperar un documento*/
 
   useEffect(() => {
@@ -57,14 +59,13 @@ export const Contenedor = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <SimpleGrid
         columns={2}
         spacing={5}
         margin={8}
         marginLeft={50}
-        marginRight={30}
-      >
+        marginRight={30}>
         {locales.map((local) => {
           return <Store key={local.id} local={local} />;
         })}
@@ -73,6 +74,6 @@ export const Contenedor = () => {
       {res.map((local) => {
         return <Store local={local} />;
       })} */}
-    </>
+    </div>
   );
 };
